@@ -1,5 +1,5 @@
 
-let API_CURRENT = "http://api.weatherapi.com/v1/current.json?key=b344d50bde9a4b9bb2b60413242002&q=pune";
+let API_CURRENT = "https://api.weatherapi.com/v1/current.json?key=b344d50bde9a4b9bb2b60413242002&q=pune";
 const temperature = document.getElementById("temperature");
 const humidity = document.getElementById("humidityValue").textContent;
 const wind = document.getElementById("windValue").textContent;
@@ -16,7 +16,7 @@ function search(){
 
 function getCurrentWeather(city){
 
-    API_CURRENT = "http://api.weatherapi.com/v1/current.json?key=b344d50bde9a4b9bb2b60413242002&q="+city;
+    API_CURRENT = "https://api.weatherapi.com/v1/current.json?key=b344d50bde9a4b9bb2b60413242002&q="+city;
     fetchAPI(API_CURRENT)
      .then((result)=>{
         document.getElementById("country").textContent = result.location.name +", " + result.location.region + " "+ result.location.localtime.slice(11);
