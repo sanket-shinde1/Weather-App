@@ -26,16 +26,12 @@ function getCurrentWeather(city){
         cloudValue.textContent = result.current.cloud + " okta"; 
     })
     .catch((err)=>{
-        console.log("Something went wrong");
+        console.log(err);
     })
 }
 
 const HEADERS = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json'
-    },
-    mode: 'no-cors'
+    method: 'GET', 
   }
 
 
@@ -44,10 +40,12 @@ async function fetchAPI(API_CURRENT){
     try{
         const data = await fetch(API_CURRENT, HEADERS);
         const result = await data.json();
+        console.log(result);
         return result;
     }
     catch(err){
-        console.log(err.message);
+        console.log(err);
+        // return {message: "error", error: err}
      }    
 }
 
