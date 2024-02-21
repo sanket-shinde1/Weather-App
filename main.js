@@ -30,10 +30,19 @@ function getCurrentWeather(city){
     })
 }
 
+const HEADERS = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json'
+    },
+    mode: 'no-cors'
+  }
+
+
 async function fetchAPI(API_CURRENT){
 
     try{
-        const data = await fetch(API_CURRENT);
+        const data = await fetch(API_CURRENT, HEADERS);
         const result = await data.json();
         return result;
     }
