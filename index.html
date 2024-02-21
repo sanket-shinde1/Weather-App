@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="style.css" rel = "stylesheet">
+</head>
+
+<body>
+    <!-- <img src="bg.jpg" height="800px" alt=""> -->
+
+     <div class="main glass-effect">
+        <div id = "weatherInfo">
+            <div id="country">
+                Pune
+            </div>
+            <div id ="weatherimg">
+                <img src="reshot-icon-weather-VAUPX2QFJK.svg" height="100px" alt="">
+            </div>
+            <div id = "temperature">
+                <p>32&deg;c </p>
+            </div>
+
+            <div class = "climate">
+                <div id="humidity">
+                    <img src="humidity.png" height="60px" alt="">
+                    <p id = "humidityValue">20&deg;c</p>
+                </div>
+                <div id="wind">
+                    <img src="wind-svgrepo-com.svg" height="60px" alt="">
+                    <p id = "windValue">17&deg;c</p>
+                </div>
+                <div id="cloud">
+                    <img src="icons8-cloud-50.png" height="60px" alt="">
+                    <p id = "cloudValue">20&deg;c</p>
+                </div>
+            </div>
+        </div>
+         <div id = "search">
+            <input id = "city" type="text" placeholder="Enter City...">
+            <button id = "input" onclick="search()"> <img id = "searchimg" src="icons8-search.svg" height="23px" alt="">  </button>
+         </div>
+     </div>   
+
+     <script src="main.js"> </script>
+</body>
+</html>
