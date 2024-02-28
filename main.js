@@ -1,5 +1,6 @@
 
 let API_CURRENT = "https://api.weatherapi.com/v1/current.json?key=b344d50bde9a4b9bb2b60413242002&q=pune";
+const apikey = "key=b344d50bde9a4b9bb2b60413242002";
 const temperature = document.getElementById("temperature");
 const humidity = document.getElementById("humidityValue").textContent;
 const wind = document.getElementById("windValue").textContent;
@@ -14,7 +15,7 @@ function search(){
     getCurrentWeather(city);
 }
 
-function getCurrentWeather(city){
+function getCurrentWeather(city){   
 
     API_CURRENT = "https://api.weatherapi.com/v1/current.json?key=b344d50bde9a4b9bb2b60413242002&q="+city;
     fetchAPI(API_CURRENT)
@@ -26,7 +27,8 @@ function getCurrentWeather(city){
         cloudValue.textContent = result.current.cloud + " okta"; 
     })
     .catch((err)=>{
-        console.log(err);
+        alert("Enter valid city");
+        console.log(err.message);
     })
 }
 
@@ -40,12 +42,10 @@ async function fetchAPI(API_CURRENT){
     try{
         const data = await fetch(API_CURRENT, HEADERS);
         const result = await data.json();
-        console.log(result);
         return result;
     }
     catch(err){
         console.log(err);
-        // return {message: "error", error: err}
      }    
 }
 
