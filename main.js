@@ -6,30 +6,39 @@ const humidity = document.getElementById("humidityValue").textContent;
 const wind = document.getElementById("windValue").textContent;
 const cloud = document.getElementById("cloudValue").textContent;
 const input = document.getElementById("city");
-
+const searchInput = document.getElementById("city");
 
 function search(){
+//search() helps to get the city name from the user.
 
     document.getElementById("weatherInfo").style.display = "block";
     const city = document.getElementById("city").value;
     getCurrentWeather(city);
 }
 
-function getCurrentWeather(city){   
+async function displayWeatherCondition(resultPromise){
+//displays the data on the page & handles the validation.
 
-    API_CURRENT = "https://api.weatherapi.com/v1/current.json?key=b344d50bde9a4b9bb2b60413242002&q="+city;
-    fetchAPI(API_CURRENT)
-     .then((result)=>{
+    try{
+        const result = await resultPromise;
         document.getElementById("country").textContent = result.location.name +", " + result.location.region + " "+ result.location.localtime.slice(11);
         temperature.textContent = result.current.temp_c + "°c" ; 
         humidityValue.textContent = result.current.humidity + " %.";
         windValue.textContent = result.current.wind_kph + " kph";
         cloudValue.textContent = result.current.cloud + " okta"; 
-    })
-    .catch((err)=>{
-        alert("Enter valid city");
+    }
+    catch{
+        alert("Please Enter Valid City !");
         console.log(err.message);
-    })
+    }
+
+}
+
+function getCurrentWeather(city){   
+
+    API_CURRENT = "https://api.weatherapi.com/v1/current.json?"+apikey+"&q="+city;
+    const resultPromise = fetchAPI(API_CURRENT);
+    displayWeatherCondition(resultPromise);
 }
 
 const HEADERS = {
@@ -38,6 +47,7 @@ const HEADERS = {
 
 
 async function fetchAPI(API_CURRENT){
+//fetchAPI() fetch the given API and converts the data in the json format.
 
     try{
         const data = await fetch(API_CURRENT, HEADERS);
@@ -49,19 +59,8 @@ async function fetchAPI(API_CURRENT){
      }    
 }
 
-// fetchAPI()
-//     .then((result)=>{
-//         document.getElementById("country").textContent = result.location.name +", " + result.location.region + " "+ result.location.localtime.slice(11);
-//         temperature.textContent = result.current.temp_c + "°c" ; 
-//         humidityValue.textContent = result.current.humidity + " %.";
-//         windValue.textContent = result.current.wind_kph + " kph";
-//         cloudValue.textContent = result.current.cloud + " okta"; 
-//     })
-
-// const data = fetchAPI();
-// console.log(data);
-// document.getElementById("country").textContent = data.location.country;
-
-//  let ans = document.getElementById("country").textContent;
-// country.textContent = "INDIA";
-// console.log(ans);
+searchInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        search();
+    }
+});
