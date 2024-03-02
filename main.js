@@ -1,6 +1,6 @@
 
 let API_CURRENT = "https://api.weatherapi.com/v1/current.json?key=b344d50bde9a4b9bb2b60413242002&q=pune";
-const apikey = "key=b344d50bde9a4b9bb2b60413242002";
+const apikey = "b344d50bde9a4b9bb2b60413242002";
 const temperature = document.getElementById("temperature");
 const humidity = document.getElementById("humidityValue").textContent;
 const wind = document.getElementById("windValue").textContent;
@@ -36,7 +36,7 @@ async function displayWeatherCondition(resultPromise){
 
 function getCurrentWeather(city){   
 
-    API_CURRENT = "https://api.weatherapi.com/v1/current.json?"+apikey+"&q="+city;
+    API_CURRENT = "https://api.weatherapi.com/v1/current.json?key="+apikey+"&q="+city;
     const resultPromise = fetchAPI(API_CURRENT);
     displayWeatherCondition(resultPromise);
 }
